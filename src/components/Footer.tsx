@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Leaf, ArrowUpRight, Heart, Mail, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Heart, Mail, ExternalLink } from "lucide-react";
 
 const footerLinks = {
-  Parcours: [
-    { label: "Comprendre", href: "/fiches?category=comprendre" },
-    { label: "Organiser", href: "/fiches?category=organiser" },
-    { label: "Agir", href: "/fiches?category=agir" },
-    { label: "S'inspirer", href: "/ressources" },
+  Thématiques: [
+    { label: "Énergie", href: "/fiches?theme=Énergie" },
+    { label: "Mobilité", href: "/fiches?theme=Mobilité" },
+    { label: "Agriculture & alimentation", href: "/fiches?theme=Agriculture+%26+alimentation" },
+    { label: "Biodiversité & nature", href: "/fiches?theme=Biodiversité+%26+nature" },
+    { label: "Économie & finances", href: "/fiches?theme=Économie+%26+finances" },
     { label: "Actualités & Agenda", href: "/actualites" },
   ],
   Participer: [
@@ -36,14 +38,14 @@ export default function Footer() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-bold text-white">Solutions </span>
-                <span className="text-xl font-bold text-emerald-400">Transitions</span>
-              </div>
+            <Link href="/" className="inline-flex mb-6 group">
+              <Image
+                src="/images/logo-horiz.png"
+                alt="Solutions Transitions"
+                width={220}
+                height={97}
+                className="h-11 w-auto object-contain brightness-0 invert group-hover:opacity-80 transition-opacity"
+              />
             </Link>
             <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">
               Une boîte à outils pour les élus, agents et acteurs locaux qui veulent agir

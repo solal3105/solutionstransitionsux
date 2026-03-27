@@ -24,8 +24,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 
 const ficheData: Record<string, {
   title: string;
-  category: string;
-  categoryColor: string;
+  theme: string;
+  themeColor: string;
   icon: string;
   readTime: string;
   tags: string[];
@@ -37,12 +37,12 @@ const ficheData: Record<string, {
     type?: "info" | "warning" | "example" | "default";
   }[];
   keyFigures: { value: string; label: string }[];
-  relatedFiches: { id: string; title: string; category: string }[];
+  relatedFiches: { id: string; title: string; theme: string }[];
 }> = {
   "transition-energetique": {
     title: "Embarquer tous les ménages dans une transition énergétique juste",
-    category: "Agir",
-    categoryColor: "bg-rose-500",
+    theme: "Énergie",
+    themeColor: "bg-amber-500",
     icon: "⚡",
     readTime: "12 min",
     tags: ["Énergie", "Justice sociale", "Rénovation", "Précarité", "PCAET"],
@@ -128,17 +128,17 @@ const ficheData: Record<string, {
       {
         id: "vision-systemique",
         title: "Comment déployer une vision systémique dans un projet de politique publique ?",
-        category: "Organiser",
+        theme: "Pilotage & méthode",
       },
       {
         id: "ecolieux",
         title: "Pourquoi et comment soutenir le développement d'écolieux",
-        category: "Agir",
+        theme: "Habitat & urbanisme",
       },
       {
         id: "agroecologie",
         title: "Leviers d'un EPCI pour la transition agroécologique",
-        category: "Agir",
+        theme: "Agriculture & alimentation",
       },
     ],
   },
@@ -187,8 +187,8 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className={`${fiche.categoryColor} text-white text-sm font-bold px-4 py-1.5 rounded-full`}>
-                {fiche.category}
+              <span className={`${fiche.themeColor} text-white text-sm font-bold px-4 py-1.5 rounded-full`}>
+                {fiche.theme}
               </span>
               <span className="flex items-center gap-1.5 text-sm text-slate-400">
                 <Clock className="w-4 h-4" />
@@ -232,28 +232,6 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
               </button>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Key Figures */}
-      <section className="py-12 bg-gradient-to-r from-emerald-600 to-teal-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {fiche.keyFigures.map((fig, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-3xl sm:text-4xl font-extrabold text-white mb-1">
-                  {fig.value}
-                </div>
-                <div className="text-sm text-emerald-100">{fig.label}</div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -348,7 +326,7 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
                 <Link key={related.id} href={`/fiches/${related.id}`}>
                   <div className="group bg-white rounded-2xl p-6 border border-slate-100 card-hover h-full">
                     <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-2.5 py-1 rounded-full">
-                      {related.category}
+                      {related.theme}
                     </span>
                     <h3 className="text-sm font-bold text-slate-900 mt-3 mb-4 leading-snug group-hover:text-emerald-700 transition-colors">
                       {related.title}
@@ -385,15 +363,6 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
                   <Heart className="w-5 h-5" />
                   Contribuer au projet
                 </Link>
-                <a
-                  href="https://le-lierre.fr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3.5 text-white font-bold border-2 border-white/30 rounded-xl hover:bg-white/10 transition-all flex items-center gap-2"
-                >
-                  <Users className="w-5 h-5" />
-                  Rejoindre Le Lierre
-                </a>
               </div>
             </div>
           </AnimatedSection>

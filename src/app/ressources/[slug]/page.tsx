@@ -107,32 +107,7 @@ export default function ResourceDetailPage() {
         </div>
       </section>
 
-      {/* Key Figures */}
-      <section className="py-12 bg-gradient-to-r from-emerald-600 to-teal-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { value: "500K", label: "emplois à créer d'ici 2030" },
-              { value: "100K+", label: "emplois en zones rurales" },
-              { value: "90%", label: "des zones rurales gagnantes" },
-              { value: "250K", label: "emplois rénovation en 2050" },
-            ].map((fig, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-3xl sm:text-4xl font-extrabold text-white mb-1">
-                  {fig.value}
-                </div>
-                <div className="text-sm text-emerald-100">{fig.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Content */}
       <section className="py-16">
@@ -324,15 +299,6 @@ export default function ResourceDetailPage() {
                 >
                   Proposer une ressource
                 </Link>
-                <a
-                  href="https://le-lierre.fr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3.5 text-white font-bold border-2 border-white/30 rounded-xl hover:bg-white/10 transition-all flex items-center gap-2"
-                >
-                  <Users className="w-5 h-5" />
-                  Rejoindre Le Lierre
-                </a>
               </div>
             </div>
           </AnimatedSection>
