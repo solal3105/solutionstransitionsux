@@ -19,6 +19,9 @@ import {
   Building2,
   Heart,
   MessageSquare,
+  Headphones,
+  Play,
+  Mic,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -38,6 +41,17 @@ const ficheData: Record<string, {
   }[];
   keyFigures: { value: string; label: string }[];
   relatedFiches: { id: string; title: string; theme: string }[];
+  podcast?: {
+    id: string;
+    number: number;
+    title: string;
+    guest: string;
+    guestRole: string;
+    duration: string;
+    color: string;
+    gradient: string;
+    emoji: string;
+  };
 }> = {
   "transition-energetique": {
     title: "Embarquer tous les ménages dans une transition énergétique juste",
@@ -141,6 +155,17 @@ const ficheData: Record<string, {
         theme: "Agriculture & alimentation",
       },
     ],
+    podcast: {
+      id: "e04",
+      number: 4,
+      title: "Sobriété énergétique : embarquer les ménages précaires en premier",
+      guest: "Anne Vandenbunder",
+      guestRole: "Directrice, SLIME — Service Local d'Intervention pour la Maîtrise de l'Énergie",
+      duration: "44:30",
+      color: "#d97706",
+      gradient: "from-amber-500 to-orange-600",
+      emoji: "⚡",
+    },
   },
 };
 
@@ -235,6 +260,70 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
+      {/* ── Podcast associé ─────────────────────────────────────── */}
+      {fiche.podcast && (
+        <section className="pb-8 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <Link href={`/podcast`}>
+                <div
+                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${fiche.podcast.gradient} p-7 sm:p-9 shadow-2xl group cursor-pointer`}
+                >
+                  {/* Déco */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-white/10" />
+                    <div className="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-black/10" />
+                  </div>
+
+                  <div className="relative z-10">
+                    {/* Label */}
+                    <div className="flex items-center gap-2 mb-5">
+                      <span className="inline-flex items-center gap-2 bg-white/20 text-white/90 text-[11px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                        <Headphones className="w-3.5 h-3.5" />
+                        Épisode #{fiche.podcast.number.toString().padStart(2, "0")} du podcast
+                      </span>
+                      <span className="text-white/60 text-xs">{fiche.podcast.duration}</span>
+                    </div>
+
+                    <div className="flex items-center gap-6">
+                      {/* Emoji */}
+                      <div className="hidden sm:flex w-20 h-20 rounded-2xl bg-white/20 items-center justify-center text-4xl flex-shrink-0 group-hover:scale-105 transition-transform">
+                        {fiche.podcast.emoji}
+                      </div>
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-tight mb-1">
+                          {fiche.podcast.title}
+                        </h3>
+                        <p className="text-white/75 text-sm">
+                          {fiche.podcast.guest}
+                          <span className="text-white/50"> · {fiche.podcast.guestRole}</span>
+                        </p>
+                      </div>
+
+                      {/* Bouton écouter */}
+                      <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                        <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-200">
+                          <Play className="w-7 h-7 ml-1" style={{ color: fiche.podcast.color }} />
+                        </div>
+                        <span className="text-white/70 text-[11px] font-semibold whitespace-nowrap">Écouter →</span>
+                      </div>
+                    </div>
+
+                    {/* Tagline bas */}
+                    <div className="mt-6 flex items-center gap-2 text-white/60 text-xs">
+                      <Mic className="w-3.5 h-3.5" />
+                      <span>Cet épisode approfondit les enjeux traités dans cette fiche.</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
+
       {/* Table of Contents + Content */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -260,20 +349,29 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
                   ))}
                 </nav>
 
-                <div className="mt-8 p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
-                  <p className="text-sm font-semibold text-emerald-800 mb-2">
-                    Besoin d&apos;aide ?
-                  </p>
-                  <p className="text-xs text-emerald-600 mb-3">
-                    Notre assistant IA peut répondre à vos questions sur cette fiche.
-                  </p>
-                  <Link
-                    href="/assistant"
-                    className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
-                  >
-                    Poser une question <ChevronRight className="w-3 h-3" />
-                  </Link>
-                </div>
+                {fiche.podcast && (
+                  <div className="mb-4">
+                    <Link href="/podcast">
+                      <div
+                        className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${fiche.podcast.gradient} p-4 group cursor-pointer shadow-lg`}
+                      >
+                        <div className="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-white/10" />
+                        <div className="relative z-10">
+                          <span className="inline-flex items-center gap-1.5 text-white/80 text-[10px] font-bold uppercase tracking-widest mb-2">
+                            <Headphones className="w-3 h-3" /> Podcast lié
+                          </span>
+                          <p className="text-white font-bold text-sm leading-snug mb-1 line-clamp-2">
+                            {fiche.podcast.emoji} {fiche.podcast.title}
+                          </p>
+                          <p className="text-white/70 text-[11px] mb-3 line-clamp-1">{fiche.podcast.guest}</p>
+                          <span className="inline-flex items-center gap-1 text-white text-xs font-bold bg-white/20 group-hover:bg-white/30 px-2.5 py-1 rounded-lg transition-colors">
+                            <Play className="w-3 h-3 fill-white" /> Écouter · {fiche.podcast.duration}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                )}
               </div>
             </aside>
 

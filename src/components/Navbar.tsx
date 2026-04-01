@@ -10,6 +10,7 @@ import { Search, ArrowRight, Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Fiches", href: "/fiches" },
   { label: "Ressources", href: "/fiches?type=ressource" },
+  { label: "Podcast", href: "/podcast" },
   { label: "Actualités", href: "/actualites" },
   { label: "Le Projet", href: "/projet" },
 ];

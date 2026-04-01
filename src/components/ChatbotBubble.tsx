@@ -9,6 +9,8 @@ import {
   Bot,
   ArrowRight,
   Sparkles,
+  Maximize2,
+  Minimize2,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -156,6 +158,7 @@ function getResponse(input: string): Message {
 
 export default function ChatbotBubble() {
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -191,17 +194,41 @@ export default function ChatbotBubble() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* ── Expanded backdrop ── */}
+      <AnimatePresence>
+        {open && expanded && (
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40"
+            onClick={() => setExpanded(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* ── Chat Window ── */}
       <AnimatePresence>
         {open && (
           <motion.div
             key="chat"
+            layout
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="w-[350px] sm:w-[390px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 flex flex-col bg-white"
-            style={{ maxHeight: "calc(100vh - 120px)", height: 520 }}
+            className={`rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 flex flex-col bg-white transition-all duration-300 ${
+              expanded
+                ? "fixed bottom-6 right-6 z-50"
+                : ""
+            }`}
+            style={
+              expanded
+                ? { width: "min(720px, calc(100vw - 48px))", height: "min(600px, calc(100vh - 80px))" }
+                : { width: "min(390px, calc(100vw - 48px))", height: 520, maxHeight: "calc(100vh - 120px)" }
+            }
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 flex-shrink-0">
@@ -216,7 +243,14 @@ export default function ChatbotBubble() {
                 </p>
               </div>
               <button
-                onClick={() => setOpen(false)}
+                onClick={() => setExpanded((e) => !e)}
+                title={expanded ? "Réduire" : "Agrandir"}
+                className="w-7 h-7 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors flex-shrink-0"
+              >
+                {expanded ? <Minimize2 className="w-4 h-4 text-white" /> : <Maximize2 className="w-4 h-4 text-white" />}
+              </button>
+              <button
+                onClick={() => { setOpen(false); setExpanded(false); }}
                 className="w-7 h-7 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors flex-shrink-0"
               >
                 <X className="w-4 h-4 text-white" />
@@ -232,7 +266,7 @@ export default function ChatbotBubble() {
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                     </div>
                   )}
-                  <div className={`flex flex-col gap-2 max-w-[82%] ${m.role === "user" ? "items-end" : "items-start"}`}>
+                  <div className={`flex flex-col gap-2 ${expanded ? "max-w-[75%]" : "max-w-[82%]"} ${m.role === "user" ? "items-end" : "items-start"}`}>
                     <div
                       className={`px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
                         m.role === "user"
