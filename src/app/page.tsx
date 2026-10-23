@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import CounterAnimation from "@/components/CounterAnimation";
+import CollectionsSection from "@/components/CollectionsSection";
 import { useRef } from "react";
 
 const fiches = [
@@ -363,6 +364,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════ COLLECTIONS ═══════════════════════════ */}
+      <CollectionsSection />
 
       {/* ═══════════════════════════ FICHES SHOWCASE ═══════════════════════════ */}
       <section className="relative py-32 bg-gradient-to-b from-slate-50 to-white">
