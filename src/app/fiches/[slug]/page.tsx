@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -257,6 +258,23 @@ export default function FicheDetailPage({ params }: { params: Promise<{ slug: st
               </button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── Infographie ───────────────────────────────────────── */}
+      <section className="bg-white pb-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="rounded-2xl overflow-hidden shadow-md border border-slate-100">
+              <Image
+                src="/images/infographie-mandat-2026.png"
+                alt="Mandat 2026-2032 : Anticiper le Second Souffle de la Transition Écologique"
+                width={1400}
+                height={787}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

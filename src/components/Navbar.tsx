@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Search, ArrowRight, Menu, X } from "lucide-react";
@@ -21,6 +21,7 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -59,8 +60,20 @@ export default function Navbar() {
     setSearchQuery("");
   }, []);
 
-  const isActive = (href: string) =>
-    pathname === href || (href !== "/" && pathname.startsWith(href));
+  const isActive = (href: string) => {
+    const [hrefPath, hrefQuery] = href.split("?");
+    if (hrefQuery) {
+      const hrefParams = new URLSearchParams(hrefQuery);
+      if (pathname !== hrefPath) return false;
+      for (const [key, value] of hrefParams.entries()) {
+        if (searchParams.get(key) !== value) return false;
+      }
+      return true;
+    }
+    // For the /fiches link specifically, don't match when a type filter is active
+    if (href === "/fiches" && searchParams.get("type")) return false;
+    return pathname === href || (href !== "/" && pathname.startsWith(href));
+  };
 
   return (
     <>

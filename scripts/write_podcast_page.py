@@ -727,7 +727,7 @@ export default function PodcastPage() {
 '''
 
 # Write podcast page
-podcast_dir = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/podcast"
+podcast_dir = "/Users/solalgendrin/Developer/solutionstransitionsux/src/app/podcast"
 os.makedirs(podcast_dir, exist_ok=True)
 path = os.path.join(podcast_dir, "page.tsx")
 with open(path, "w", encoding="utf-8") as f:

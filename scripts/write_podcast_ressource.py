@@ -347,7 +347,7 @@ RESSOURCE_PODCAST = RESSOURCE_PODCAST.replace(
     'import { useState, useRef, useEffect } from "react";\nimport { AnimatePresence } from "framer-motion";'
 )
 
-out_dir = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/ressources/[slug]"
+out_dir = "/Users/solalgendrin/Developer/solutionstransitionsux/src/app/ressources/[slug]"
 os.makedirs(out_dir, exist_ok=True)
 path = os.path.join(out_dir, "page.tsx")
 with open(path, "w", encoding="utf-8") as f:

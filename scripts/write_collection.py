@@ -593,7 +593,7 @@ export default function CollectionPage() {
 }
 '''
 
-path = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/collections/[theme]/page.tsx"
+path = "/Users/solalgendrin/Developer/solutionstransitionsux/src/app/collections/[theme]/page.tsx"
 with open(path, "w", encoding="utf-8") as f:
     f.write(tsx)
 
