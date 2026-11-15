@@ -777,14 +777,14 @@ export default function Home() {
             {[...partners, ...partners].map((partner, i) => (
               <div
                 key={i}
-                className="flex-none mx-8 flex items-center justify-center h-20 w-44 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                className="flex-none mx-12 flex items-center justify-center h-36 w-72 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
               >
                 <Image
                   src={partner.src}
                   alt={partner.name}
-                  width={176}
-                  height={80}
-                  className="max-h-16 w-auto object-contain"
+                  width={288}
+                  height={144}
+                  className="max-h-32 w-auto object-contain"
                 />
               </div>
             ))}

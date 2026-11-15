@@ -770,7 +770,7 @@ export default function CollectionPage() {
 import os
 
 # Write [slug] page
-slug_dir = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/collections/[slug]"
+slug_dir = "/Users/solalgendrin/Developer/Solutions-Transitions/solutionstransitionsux/src/app/collections/[slug]"
 os.makedirs(slug_dir, exist_ok=True)
 path = os.path.join(slug_dir, "page.tsx")
 with open(path, "w", encoding="utf-8") as f:
@@ -785,7 +785,7 @@ else:
     print("Clean unicode")
 
 # Remove old [theme] page if it exists
-theme_page = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/collections/[theme]/page.tsx"
+theme_page = "/Users/solalgendrin/Developer/Solutions-Transitions/solutionstransitionsux/src/app/collections/[theme]/page.tsx"
 if os.path.exists(theme_page):
     os.remove(theme_page)
     os.rmdir(os.path.dirname(theme_page))

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Replace literal \\uXXXX escape sequences (including emoji surrogate pairs) with real UTF-8."""
 
-path = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/fiches/page.tsx"
+path = "/Users/solalgendrin/Developer/Solutions-Transitions/solutionstransitionsux/src/app/fiches/page.tsx"
 
 with open(path, "r", encoding="utf-8") as f:
     src = f.read()

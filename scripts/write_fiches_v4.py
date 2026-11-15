@@ -537,7 +537,7 @@ export default function FichesPage() {
 }
 '''
 
-path = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/fiches/page.tsx"
+path = "/Users/solalgendrin/Developer/Solutions-Transitions/solutionstransitionsux/src/app/fiches/page.tsx"
 with open(path, "w", encoding="utf-8") as f:
     f.write(TSX)
 

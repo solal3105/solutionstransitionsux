@@ -716,7 +716,7 @@ export default function FichesPage() {
 '''
 
 import os
-path = "/Users/solalgendrin/CascadeProjects/solutionstransitionsux/src/app/fiches/page.tsx"
+path = "/Users/solalgendrin/Developer/Solutions-Transitions/solutionstransitionsux/src/app/fiches/page.tsx"
 with open(path, "w", encoding="utf-8") as f:
     f.write(content)
 print(f"OK — {len(content)} chars written")
